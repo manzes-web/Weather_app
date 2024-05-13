@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../home_screen/home_screen.dart';
 
@@ -13,20 +12,23 @@ class HelpScreen extends StatefulWidget {
 }
 
 class _HelpScreenState extends State<HelpScreen> {
-  bool _ispressed = false;
+  Timer? _timer;
+
   @override
   void initState() {
     super.initState();
-    _navigateToHome();
-  }
 
-  _navigateToHome() async {
-    print(_ispressed);
-    if (_ispressed != true) {
-      await Future.delayed(Duration(seconds: 5), () {});
+    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => const HomeScreen()));
-    } else {}
+      timer.cancel();
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
   }
 
   @override
@@ -34,26 +36,18 @@ class _HelpScreenState extends State<HelpScreen> {
     return Scaffold(
       body: Stack(children: [
         Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage('lib/assets/weather_background.png'),
                     fit: BoxFit.fill))),
-        // Center(
-        //   child: Image.asset(
-        //     'lib/assets/frame.png', // Replace with your frame image path
-        //     width: MediaQuery.of(context).size.width,
-        //     height: MediaQuery.of(context).size.height,
-        //     fit: BoxFit.cover,
-        //   ),
-        // ),
         Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Center(
+              const Center(
                 child: Text(
-                  'WE SHOW YOU WEATHER HERE!',
-                  style: TextStyle(color: Colors.black, fontSize: 20),
+                  'WE SHOW YOU\n WEATHER HERE!',
+                  style: TextStyle(color: Colors.blue, fontSize: 40),
                 ),
               ),
               SizedBox(
@@ -61,13 +55,11 @@ class _HelpScreenState extends State<HelpScreen> {
                 height: 50,
                 child: OutlinedButton(
                     onPressed: () {
-                      setState(() {
-                        _ispressed = true;
-                      });
-                      Navigator.push(
+                      _timer?.cancel();
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => HomeScreen()));
+                              builder: (context) => const HomeScreen()));
                     },
                     style: OutlinedButton.styleFrom(
                         shape: RoundedRectangleBorder(
@@ -75,8 +67,8 @@ class _HelpScreenState extends State<HelpScreen> {
                     child: const Row(
                       children: [
                         Text(
-                          'skip',
-                          style: TextStyle(color: Colors.black, fontSize: 20),
+                          'SKIP',
+                          style: TextStyle(color: Colors.blue, fontSize: 20),
                         ),
                         Icon(Icons.arrow_forward)
                       ],
