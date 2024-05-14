@@ -46,8 +46,8 @@ class _HelpScreenState extends State<HelpScreen> {
             children: [
               const Center(
                 child: Text(
-                  'WE SHOW YOU\n WEATHER HERE!',
-                  style: TextStyle(color: Colors.blue, fontSize: 40),
+                  'WE SHOW WEATHER\n FOR YOU!',
+                  style: TextStyle(color: Colors.blue, fontSize: 30),
                 ),
               ),
               SizedBox(

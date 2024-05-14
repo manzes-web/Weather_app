@@ -6,8 +6,6 @@ import '../home_screen/weather.dart';
 class FetchData {
   // http://api.weatherapi.com/v1/current.json?key=1bc0383d81444b58b1432929200711&q=48.8567,2.350
 
-  static const url = 'https://api.openweathermap.org/data/2.5/weather';
-
   FetchData();
 
   Future<Weather?> getWeatherByCity(String city) async {
