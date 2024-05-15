@@ -68,7 +68,7 @@ class _HelpScreenState extends State<HelpScreen> {
                       children: [
                         Text(
                           'SKIP',
-                          style: TextStyle(color: Colors.blue, fontSize: 20),
+                          style: TextStyle(color: Colors.blue, fontSize: 18),
                         ),
                         Icon(Icons.arrow_forward)
                       ],

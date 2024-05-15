@@ -6,12 +6,12 @@ import '../home_screen/weather.dart';
 class FetchData {
   // http://api.weatherapi.com/v1/current.json?key=1bc0383d81444b58b1432929200711&q=48.8567,2.350
 
-  FetchData();
+  // FetchData();
 
   Future<Weather?> getWeatherByCity(String city) async {
     Uri? uri;
     if (city.trim().isEmpty) {
-      final position = await getCurrentCity();
+      final position = await getCurrentCityLocation();
       uri = Uri.https('api.weatherapi.com', 'v1/current.json', {
         'key': '1bc0383d81444b58b1432929200711',
         'q': '${position.latitude},${position.longitude}'
@@ -30,7 +30,7 @@ class FetchData {
     return Weather.fromJson(data);
   }
 
-  Future<Position> getCurrentCity() async {
+  Future<Position> getCurrentCityLocation() async {
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();

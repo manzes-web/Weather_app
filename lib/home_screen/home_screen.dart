@@ -103,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     Text(
                       'back',
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                      style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
                   ],
                 ),
